@@ -1,18 +1,18 @@
 # Sample debug app
 
-Related to issue : https://github.com/symfony/symfony/issues/40034
+Related to PR : https://github.com/symfony/symfony/pull/40856
 
-Install app
+```
+git clone git@github.com:monteiro/PR-40856.git
+composer install
+// up the postgresql db
+docker-compose up
+bin/console doctrine:migrations:migrate
+symfony serve
+```
 
-- clone repo and install dependencies
-- configure a database and create it (`d:d:c`)
-- apply existing migrations (`d:m:m`)
-- load fixtures (`d:f:l -n`)
-- launch a webserver (via `symfony` or `php -S localhost:8000 -t public`)
 
-Steps to reproduce
-
-- execute `curl localhost:8080/api/contacts`
+- execute `curl localhost:8000/api/contacts`
     - you should see a JSON of contacts with 2 fields
 - go to `src/Entity/Contact.php` and add or remove `@Groups("contacts_get")` on the entity properties, save
 - execute `curl localhost:8080/api/contacts`
@@ -21,3 +21,4 @@ Steps to reproduce
 - execute `curl localhost:8080/api/contacts`
     - :warning: you should see _changes_
 
+Notes: This issue was reported by @jhice

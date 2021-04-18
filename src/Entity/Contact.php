@@ -15,7 +15,6 @@ class Contact
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("contacts_get")
      */
     private $id;
 
@@ -27,6 +26,7 @@ class Contact
 
     /**
      * @ORM\Column(type="smallint")
+     * @Groups("contacts_get")
      */
     private $age;
 
