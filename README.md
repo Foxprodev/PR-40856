@@ -8,6 +8,7 @@ composer install
 // up the postgresql db
 docker-compose up
 bin/console doctrine:migrations:migrate
+bin/console doctrine:fixtures:load
 symfony serve
 ```
 
