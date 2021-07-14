@@ -1,5 +1,14 @@
 # Sample debug app
 
+
+**WARN THIS IS CONCEPT OF CACHE INVALIDATION**
+
+**All shoud work fine because of**
+`DevCacheInvalidator`
+**and overriden** `CacheClassMetadataFactory`
+
+The source issue description bellow:
+
 Related to PR : https://github.com/symfony/symfony/pull/40856
 
 ```

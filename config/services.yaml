@@ -29,3 +29,24 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    cache.invalidator:
+        parent: "cache.system"
+        tags:
+            - cache.pool
+
+    App\Service\DevCacheInvalidator:
+        arguments:
+            - "@cache.invalidator"
+            - "@cache.system_clearer"
+        tags:
+            - kernel.event_subscriber
+
+    serializer.mapping.cache_class_metadata_factory:
+        class: App\Service\DevCacheClassMetadataFactory
+        decorates: serializer.mapping.class_metadata_factory
+        arguments:
+            - "@.inner"
+            - '@serializer.mapping.cache.symfony'
+
+    App\Service\DevCacheClassMetadataFactory: "@serializer.mapping.cache_class_metadata_factory"
